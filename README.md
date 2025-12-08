@@ -1,4 +1,7 @@
 # Mines for Des(s)ert
+## Autoři
+- Půta Jiří
+- Součková Marie
 
 ## Náplň  projektu
 1. týden
@@ -7,7 +10,7 @@
    - modelování min
    - inicializace repozitáře a zakladní nastavení projektu
 3. týden
-   - Třídy a vlastnosti min
+   - třídy a vlastnosti min
    - grafické rozlišení podle min v okolí
 4. týden
    - logika generování min
@@ -29,5 +32,5 @@
    - particles systém
    - animace
 10. týden
-   - optimalizace a ladění bugů
-   - testování funkčnosti ve VR
+     - optimalizace a ladění bugů
+     - testování funkčnosti ve VR

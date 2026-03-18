@@ -36,9 +36,4 @@ public class CellView : MonoBehaviour
             UpdateVisual();
         }
     }
-
-    void OnTriggerEnter(Collider other)
-    {
-        RevealCell();
-    }
 }

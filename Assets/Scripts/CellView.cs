@@ -1,12 +1,12 @@
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class CellView : MonoBehaviour
 {
     private Cell cellData;
 
     //Ten text je jenom nějaký provizorní zobrazení hodnot přímo ve hře, pak to samozřejmě bude vypadat jinak
-    public TMP_Text text;
+    public Text text;
 
     //metoda volaná při spawnování, používá se jen jednou
     public void SetData(Cell cell)
@@ -21,7 +21,7 @@ public class CellView : MonoBehaviour
         text.text = cellData.ToStringForGame();
     }
 
-    void RevealCell()
+    public void RevealCell()
     {
         cellData.isFlagged = false;
         cellData.isRevealed = true;

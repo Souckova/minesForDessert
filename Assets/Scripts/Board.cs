@@ -10,19 +10,31 @@ public class Board : MonoBehaviour
 
     public GameObject cellPrefab; // přetáhneš prefab v inspectoru
     public float cellMargin = 1f;
-    public float cellHeight = 1f;
+
+    bool firstClick = true;
+    Cell firstClickCell;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         CreateGrid();
-        Debug.Log(GridToString());
+        SpawnCells();
+    }
+
+    void NewGame()
+    {
         PutMines();
-        Debug.Log(GridToString());
         CalculateAdjacents();
         Debug.Log(GridToString());
-        SpawnCells();
+    }
+
+    void FirstClick(Cell cell)
+    {
+        firstClick = false;
+        firstClickCell = cell;
+
+        NewGame();
     }
 
     void SpawnCells()
@@ -31,8 +43,11 @@ public class Board : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                Vector3 pos = new Vector3(x * cellMargin, cellHeight, y * cellMargin); // XZ plane
-                GameObject cellGO = Instantiate(cellPrefab, pos, Quaternion.identity, this.transform);
+                Vector3 pos = new Vector3(x * cellMargin, 0, y * cellMargin); // XZ plane
+                
+                GameObject cellGO = Instantiate(cellPrefab, this.transform);
+                cellGO.transform.localPosition = pos;
+                cellGO.transform.localRotation = Quaternion.identity;
 
                 cellGO.name = $"Cell_{x}_{y}";
 
@@ -40,6 +55,51 @@ public class Board : MonoBehaviour
                 if (view != null)
                 {
                     view.SetData(grid[x, y]);
+                    view.SetBoard(this);
+                }
+            }
+        }
+    }
+
+    public void RevealCell(Cell cell)
+    {
+        if(firstClick)
+        {
+            FirstClick(cell);
+        }
+
+        if(cell.isRevealed) return;
+        
+        cell.Reveal();
+
+        if(cell.hasMine)
+        {
+            cell.Explode();
+        }
+
+        if(cell.adjacentMines == 0)
+        {
+            RevealAround(cell);
+        }
+    }
+
+    public void RevealAround(Cell cell)
+    {
+        int x = cell.x;
+        int y = cell.y;
+
+        for(int dx = -1; dx <= 1; dx++)
+        {
+            for(int dy = -1; dy <= 1; dy++)
+            {
+                if(dx == 0 && dy == 0) continue;
+
+                int nx = x + dx;
+                int ny = y + dy;
+
+                if(IsInsideGrid(nx, ny))
+                {
+                    RevealCell(grid[nx, ny]);
                 }
             }
         }
@@ -53,7 +113,11 @@ public class Board : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                grid[x, y] = new Cell();
+                grid[x, y] = new Cell
+                {
+                    x = x,
+                    y = y
+                };
             }
         }
 
@@ -69,9 +133,10 @@ public class Board : MonoBehaviour
             int x = Random.Range(0, width);
             int y = Random.Range(0, height);
 
-            if(!grid[x, y].hasMine)
+            if(!grid[x, y].hasMine && grid[x, y] != firstClickCell)
             {
                 grid[x, y].hasMine = true;
+                grid[x, y].adjacentMines = -1;
                 minesPlaced++;
             }
         }

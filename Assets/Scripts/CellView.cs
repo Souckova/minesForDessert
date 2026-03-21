@@ -6,6 +6,8 @@ public class CellView : MonoBehaviour
     private Cell cellData;
     private Board board;
 
+    public GameObject explosionEffect;
+
     //Ten text je jenom nějaký provizorní zobrazení hodnot přímo ve hře, pak to samozřejmě bude vypadat jinak
     public Text text;
 
@@ -14,6 +16,7 @@ public class CellView : MonoBehaviour
     {
         cellData = cell;
         cellData.OnRevealed += UpdateVisual;
+        cellData.OnExplode += ShowExplosion;
         UpdateVisual();
     }
 
@@ -32,5 +35,13 @@ public class CellView : MonoBehaviour
     public void OnClick()
     {
         board.RevealCell(cellData);
+    }
+
+    void ShowExplosion()
+    {
+        GameObject explosion = Instantiate(explosionEffect, transform.position, transform.rotation);
+        ParticleSystem explosionParticle = explosion.GetComponent<ParticleSystem>();
+        Destroy(explosion, explosionParticle.main.duration);
+        Debug.Log("Výbuch");
     }
 }

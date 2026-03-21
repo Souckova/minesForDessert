@@ -9,6 +9,7 @@ public class Cell
     public int adjacentMines;
 
     public event Action OnRevealed;
+    public event Action OnExplode;
 
     public int x;
     public int y;
@@ -36,5 +37,10 @@ public class Cell
         isFlagged = false;
         isRevealed = true;
         OnRevealed?.Invoke();
+    }
+
+    public void Explode()
+    {
+        OnExplode?.Invoke();
     }
 }

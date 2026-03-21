@@ -72,6 +72,11 @@ public class Board : MonoBehaviour
         
         cell.Reveal();
 
+        if(cell.hasMine)
+        {
+            cell.Explode();
+        }
+
         if(cell.adjacentMines == 0)
         {
             RevealAround(cell);

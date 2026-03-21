@@ -51,8 +51,35 @@ public class Board : MonoBehaviour
     public void RevealCell(Cell cell)
     {
         if(cell.isRevealed) return;
-
+        
         cell.Reveal();
+
+        if(cell.adjacentMines == 0)
+        {
+            RevealAround(cell);
+        }
+    }
+
+    public void RevealAround(Cell cell)
+    {
+        int x = cell.x;
+        int y = cell.y;
+
+        for(int dx = -1; dx <= 1; dx++)
+        {
+            for(int dy = -1; dy <= 1; dy++)
+            {
+                if(dx == 0 && dy == 0) continue;
+
+                int nx = x + dx;
+                int ny = y + dy;
+
+                if(IsInsideGrid(nx, ny))
+                {
+                    RevealCell(grid[nx, ny]);
+                }
+            }
+        }
     }
 
 
@@ -63,7 +90,11 @@ public class Board : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                grid[x, y] = new Cell();
+                grid[x, y] = new Cell
+                {
+                    x = x,
+                    y = y
+                };
             }
         }
 
@@ -82,6 +113,7 @@ public class Board : MonoBehaviour
             if(!grid[x, y].hasMine)
             {
                 grid[x, y].hasMine = true;
+                grid[x, y].adjacentMines = -1;
                 minesPlaced++;
             }
         }

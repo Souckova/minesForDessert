@@ -10,6 +10,9 @@ public class Cell
 
     public event Action OnRevealed;
 
+    public int x;
+    public int y;
+
     public override string ToString() {
         if (hasMine)
             return "M";

@@ -11,20 +11,30 @@ public class Board : MonoBehaviour
     public GameObject cellPrefab; // přetáhneš prefab v inspectoru
     public float cellMargin = 1f;
 
+    bool firstClick = true;
+    Cell firstClickCell;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        NewGame();
+        CreateGrid();
+        SpawnCells();
     }
 
     void NewGame()
     {
-        CreateGrid();
         PutMines();
         CalculateAdjacents();
         Debug.Log(GridToString());
-        SpawnCells();
+    }
+
+    void FirstClick(Cell cell)
+    {
+        firstClick = false;
+        firstClickCell = cell;
+
+        NewGame();
     }
 
     void SpawnCells()
@@ -53,6 +63,11 @@ public class Board : MonoBehaviour
 
     public void RevealCell(Cell cell)
     {
+        if(firstClick)
+        {
+            FirstClick(cell);
+        }
+
         if(cell.isRevealed) return;
         
         cell.Reveal();
@@ -113,7 +128,7 @@ public class Board : MonoBehaviour
             int x = Random.Range(0, width);
             int y = Random.Range(0, height);
 
-            if(!grid[x, y].hasMine)
+            if(!grid[x, y].hasMine && grid[x, y] != firstClickCell)
             {
                 grid[x, y].hasMine = true;
                 grid[x, y].adjacentMines = -1;

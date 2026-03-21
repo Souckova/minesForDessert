@@ -119,3 +119,15 @@ Thumbs.db
 *.rdc
 
 .vscode
+
+Assets/Resources/ImmersiveDebuggerSettings.asset
+Assets/Resources/ImmersiveDebuggerSettings.asset.meta
+
+Assets/Oculus/OculusProjectConfig.asset
+Assets/Resources/OculusRuntimeSettings.asset
+Assets/XR/AndroidXR/AndroidXRSettingsInitializer
+Assets/XR/Settings/OpenXR\ Package\ Settings.asset
+ProjectSettings/Packages/com.unity.learn.iet-framework/Settings.json
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
+ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
+ProjectSettings/ShaderGraphSettings.asset

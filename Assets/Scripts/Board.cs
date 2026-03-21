@@ -15,10 +15,13 @@ public class Board : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        NewGame();
+    }
+
+    void NewGame()
+    {
         CreateGrid();
-        Debug.Log(GridToString());
         PutMines();
-        Debug.Log(GridToString());
         CalculateAdjacents();
         Debug.Log(GridToString());
         SpawnCells();

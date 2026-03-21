@@ -42,9 +42,17 @@ public class Board : MonoBehaviour
                 if (view != null)
                 {
                     view.SetData(grid[x, y]);
+                    view.SetBoard(this);
                 }
             }
         }
+    }
+
+    public void RevealCell(Cell cell)
+    {
+        if(cell.isRevealed) return;
+
+        cell.Reveal();
     }
 
 

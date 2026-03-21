@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class Cell
 {
@@ -6,6 +7,8 @@ public class Cell
     public bool isRevealed;
     public bool isFlagged;
     public int adjacentMines;
+
+    public event Action OnRevealed;
 
     public override string ToString() {
         if (hasMine)
@@ -23,5 +26,12 @@ public class Cell
         if(hasMine)
             return "M";
         return adjacentMines.ToString();
+    }
+
+    public void Reveal()
+    {
+        isFlagged = false;
+        isRevealed = true;
+        OnRevealed?.Invoke();
     }
 }

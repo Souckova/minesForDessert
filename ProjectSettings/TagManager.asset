@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Anchor
   - Ground
+  - MineZone
   layers:
   - Default
   - TransparentFX

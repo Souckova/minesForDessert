@@ -10,7 +10,6 @@ public class Board : MonoBehaviour
 
     public GameObject cellPrefab; // přetáhneš prefab v inspectoru
     public float cellMargin = 1f;
-    public float cellHeight = 1f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,8 +30,11 @@ public class Board : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                Vector3 pos = new Vector3(x * cellMargin, cellHeight, y * cellMargin); // XZ plane
-                GameObject cellGO = Instantiate(cellPrefab, pos, Quaternion.identity, this.transform);
+                Vector3 pos = new Vector3(x * cellMargin, 0, y * cellMargin); // XZ plane
+                
+                GameObject cellGO = Instantiate(cellPrefab, this.transform);
+                cellGO.transform.localPosition = pos;
+                cellGO.transform.localRotation = Quaternion.identity;
 
                 cellGO.name = $"Cell_{x}_{y}";
 

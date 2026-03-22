@@ -8,6 +8,8 @@ public class CellView : MonoBehaviour
 
     public GameObject explosionEffect;
 
+    public BoxCollider flagTrigger;
+
     //Ten text je jenom nějaký provizorní zobrazení hodnot přímo ve hře, pak to samozřejmě bude vypadat jinak
     public Text text;
 
@@ -17,6 +19,8 @@ public class CellView : MonoBehaviour
         cellData = cell;
         cellData.OnRevealed += UpdateVisual;
         cellData.OnExplode += ShowExplosion;
+        cellData.OnFlag += UpdateVisual;
+        cellData.OnUnFlag += UpdateVisual;
         UpdateVisual();
     }
 
@@ -35,6 +39,16 @@ public class CellView : MonoBehaviour
     public void OnClick()
     {
         board.RevealCell(cellData);
+    }
+
+    public void OnFlagPlaced()
+    {
+        board.FlagCell(cellData);
+    }
+
+    public void OnFlagRemoved()
+    {
+        board.UnFlagCell(cellData);
     }
 
     void ShowExplosion()

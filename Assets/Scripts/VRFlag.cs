@@ -4,11 +4,13 @@ using UnityEngine.XR.Interaction.Toolkit; // Remove this if not using XR Interac
 public class VRFlag : MonoBehaviour
 {
     private Rigidbody rb;
-    private Transform currentStickingZone;
+    private Collider currentStickingZone;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.useGravity = false;
     }
 
     // Detect when the flag enters the mine's trigger zone
@@ -16,14 +18,14 @@ public class VRFlag : MonoBehaviour
     {
         if (other.CompareTag("MineZone"))
         {
-            currentStickingZone = other.transform;
+            currentStickingZone = other;
         }
     }
 
     // Detect when the flag leaves the mine's trigger zone
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("MineZone") && currentStickingZone == other.transform)
+        if (other.CompareTag("MineZone") && currentStickingZone == other)
         {
             currentStickingZone = null;
         }
@@ -32,6 +34,14 @@ public class VRFlag : MonoBehaviour
     // Call this method when the VR player GRABS the flag
     public void OnFlagGrabbed()
     {
+        if(currentStickingZone != null)
+        {
+            transform.SetParent(currentStickingZone.transform);
+            
+            currentStickingZone.GetComponentInParent<CellView>().OnFlagRemoved();
+        }
+
+
         // Unparent it in case it was stuck to a mine
         transform.SetParent(null); 
         
@@ -52,7 +62,10 @@ public class VRFlag : MonoBehaviour
             rb.useGravity = false;
 
             // 2. Parent it to the mine so if the mine moves, the flag moves
-            transform.SetParent(currentStickingZone);
+            transform.SetParent(currentStickingZone.transform);
+            
+            currentStickingZone.GetComponentInParent<CellView>().OnFlagPlaced();
+
 
             // 3. Optional: Snap it to the center of the mine and make it stand upright
             // transform.position = currentStickingZone.position;

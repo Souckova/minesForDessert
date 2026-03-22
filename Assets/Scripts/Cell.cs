@@ -10,6 +10,8 @@ public class Cell
 
     public event Action OnRevealed;
     public event Action OnExplode;
+    public event Action OnFlag;
+    public event Action OnUnFlag;
 
     public int x;
     public int y;
@@ -34,9 +36,20 @@ public class Cell
 
     public void Reveal()
     {
-        isFlagged = false;
         isRevealed = true;
         OnRevealed?.Invoke();
+    }
+
+    public void Flag()
+    {
+        isFlagged = true;
+        OnFlag?.Invoke();
+    }
+
+    public void UnFlag()
+    {
+        isFlagged = false;
+        OnUnFlag?.Invoke();
     }
 
     public void Explode()

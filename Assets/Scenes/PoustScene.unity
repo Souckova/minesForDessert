@@ -202,6 +202,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: poust
       objectReference: {fileID: 0}
+    - target: {fileID: 730452966042592276, guid: 9593d0abc257c7e40879f42494488134, type: 3}
+      propertyPath: m_TagString
+      value: MineZone
+      objectReference: {fileID: 0}
     - target: {fileID: 2238095174134544662, guid: 9593d0abc257c7e40879f42494488134, type: 3}
       propertyPath: m_LocalPosition.x
       value: -500
@@ -599,7 +603,10 @@ MonoBehaviour:
   height: 9
   minesCount: 9
   cellPrefab: {fileID: 6258509630411458211, guid: acd30d6fd04b2f146bdd7c2210dc4ddb, type: 3}
+  flagPrefab: {fileID: 2431680439434886511, guid: 742fdc232ab68cf46a034444df859963, type: 3}
   cellMargin: 2
+  flagMargin: 1
+  flagOffset: -10
 --- !u!4 &944527805
 Transform:
   m_ObjectHideFlags: 0

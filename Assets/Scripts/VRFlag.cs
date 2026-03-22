@@ -9,6 +9,8 @@ public class VRFlag : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.useGravity = false;
     }
 
     // Detect when the flag enters the mine's trigger zone

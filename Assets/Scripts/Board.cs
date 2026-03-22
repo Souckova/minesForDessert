@@ -9,7 +9,10 @@ public class Board : MonoBehaviour
     private Cell[,] grid;
 
     public GameObject cellPrefab; // přetáhneš prefab v inspectoru
+    public GameObject flagPrefab;
     public float cellMargin = 1f;
+    public float flagMargin = 1f;
+    public float flagOffset = -10f;
 
     bool firstClick = true;
     Cell firstClickCell;
@@ -20,6 +23,7 @@ public class Board : MonoBehaviour
     {
         CreateGrid();
         SpawnCells();
+        SpawnFlags();
     }
 
     void NewGame()
@@ -58,6 +62,21 @@ public class Board : MonoBehaviour
                     view.SetBoard(this);
                 }
             }
+        }
+    }
+
+    void SpawnFlags()
+    {
+        for(int i = 0; i < minesCount; i++)
+        {
+            Vector3 pos = new Vector3(0, 0, flagOffset + i * flagMargin); // XZ plane
+
+            GameObject flagGO = Instantiate(flagPrefab, this.transform);
+            flagGO.transform.localPosition = pos;
+            flagGO.transform.localRotation = Quaternion.identity;
+            flagGO.transform.SetParent(null);
+
+            flagGO.name = $"Flag_{i}";
         }
     }
 

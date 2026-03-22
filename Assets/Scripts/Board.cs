@@ -60,6 +60,7 @@ public class Board : MonoBehaviour
                 {
                     view.SetData(grid[x, y]);
                     view.SetBoard(this);
+                    view.flagTrigger.size = new Vector3(2*cellMargin, 1f, 2*cellMargin);
                 }
             }
         }
@@ -82,12 +83,13 @@ public class Board : MonoBehaviour
 
     public void RevealCell(Cell cell)
     {
+        if(cell.isRevealed) return;
+        if(cell.isFlagged) return;
+        
         if(firstClick)
         {
             FirstClick(cell);
         }
-
-        if(cell.isRevealed) return;
         
         cell.Reveal();
 
@@ -100,6 +102,20 @@ public class Board : MonoBehaviour
         {
             RevealAround(cell);
         }
+    }
+
+    public void FlagCell(Cell cell)
+    {
+        if(cell.isRevealed) return;
+
+        cell.Flag();
+    }
+
+    public void UnFlagCell(Cell cell)
+    {
+        if(cell.isRevealed) return;
+
+        cell.UnFlag();
     }
 
     public void RevealAround(Cell cell)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Board : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Board : MonoBehaviour
     public float cellMargin = 1f;
     public float flagMargin = 1f;
     public float flagOffset = -10f;
+
+    public UnityEvent onMineExplosion;
 
     bool firstClick = true;
     Cell firstClickCell;
@@ -96,6 +99,7 @@ public class Board : MonoBehaviour
         if(cell.hasMine)
         {
             cell.Explode();
+            onMineExplosion?.Invoke();
         }
 
         if(cell.adjacentMines == 0)

@@ -2445,10 +2445,16 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1645392991}
+    - target: {fileID: 9068281059075228377, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_Target
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6499517531677593257, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
     - {fileID: 4088110610454198647, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+    - {fileID: 5944131804917401860, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+    - {fileID: 6501755809687671949, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
@@ -4021,7 +4027,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Validate
+  m_text: "Zp\u011Bt"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b036e831c0c90547b32a8a896d80f79, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5264,7 +5270,7 @@ MonoBehaviour:
     ro\u010Dn\xEDku SP\u0160E.\n\nJeho c\xEDlem bylo sezn\xE1mit se s prost\u0159ed\xEDm
     unity a vytvo\u0159it VR hru. Co n\xE1s inspirovalo? Jedna hra, kde se mus\xED
     proch\xE1zet minov\xE9 pole a na miny se \u0161lape oproti klasick\xE9 2D verzi.
-    Tato hra je THE MINEFIELS od autor\u016F ByteSized Studios.\n\nPro\u010D Mines
+    Tato hra je THE MINEFIELDS od autor\u016F ByteSized Studios.\n\nPro\u010D Mines
     for des2ert? Desert jako pou\u0161\u0165, z\xE1rov\u011B\u0148 tak\xE9 jako z\xE1kusek\r\n\n\t\t\t   
     Frapp\xE9 Industries v roce 2026.\n\n\tPod\u011Bkov\xE1n\xED pat\u0159\xED na\u0161im
     u\u010Ditel\u016Fm a francouzsk\xFDm tutori\xE1l\u016Fm."

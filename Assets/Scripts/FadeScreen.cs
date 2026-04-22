@@ -20,6 +20,17 @@ public class FadeScreen : MonoBehaviour
         if (fadeOnStart)
             FadeIn();
     }
+    public void SetAlpha(float alpha)
+    {
+        // Zastavíme běžící fade, aby se nám "nepřebíjely" barvy
+        StopAllCoroutines(); 
+        
+        rend.enabled = alpha > 0; // Pokud je alpha 0, vypneme renderer
+
+        Color newColor = fadeColor;
+        newColor.a = alpha;
+        rend.material.SetColor(colorPropertyName, newColor);
+    }
 
     public void FadeIn()
     {

@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class SceneTransitionManager : MonoBehaviour
 {
     public FadeScreen fadeScreen;
+    public float instantTransitionFadeDelay = 0.5f;
+    public float instantTransitionDelay = 2.0f;
     public static SceneTransitionManager singleton;
 
     private void Awake()
@@ -50,5 +52,33 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         operation.allowSceneActivation = true;
+    }
+
+    public void GoToSceneInstant(int sceneIndex)
+    {
+        // 1. Okamžitě nastavíme plnou barvu (alpha = 1)
+        fadeScreen.SetAlpha(1.0f);
+
+        // 2. Okamžitě načteme scénu
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void GoToSceneInstantWithDelay(int sceneIndex)
+    {
+        StartCoroutine(CombinedTransitionRoutine(sceneIndex));
+    }
+
+    private IEnumerator CombinedTransitionRoutine(int sceneIndex)
+    {
+        // 1. Čekáme na první krok (zatmění)
+        yield return new WaitForSeconds(instantTransitionFadeDelay);
+        fadeScreen.SetAlpha(1.0f);
+
+        // 2. Čekáme na druhý krok (načtení scény)
+        // POZOR: Tady čekáme DALŠÍ čas, nebo odečteme ten první.
+        // Pokud chceš, aby scéna proběhla celkem za 2s od začátku:
+        yield return new WaitForSeconds(instantTransitionDelay);
+
+        SceneManager.LoadScene(sceneIndex);
     }
 }

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+
 public class CellView : MonoBehaviour
 {
     private Cell cellData;
@@ -9,6 +12,9 @@ public class CellView : MonoBehaviour
     public GameObject explosionEffect;
 
     public BoxCollider flagTrigger;
+    public XRPokeFollowAffordance pokeFollow;
+    public XRSimpleInteractable interactable;
+    public Transform btnTransform;
 
     //Ten text je jenom nějaký provizorní zobrazení hodnot přímo ve hře, pak to samozřejmě bude vypadat jinak
     public Text text;
@@ -18,6 +24,7 @@ public class CellView : MonoBehaviour
     {
         cellData = cell;
         cellData.OnRevealed += UpdateVisual;
+        cellData.OnRevealed += DisableButton;
         cellData.OnExplode += ShowExplosion;
         cellData.OnFlag += UpdateVisual;
         cellData.OnUnFlag += UpdateVisual;
@@ -34,6 +41,19 @@ public class CellView : MonoBehaviour
     void UpdateVisual()
     {
         text.text = cellData.ToStringForGame();
+    }
+
+    void DisableButton()
+    {
+        pokeFollow.maxDistance = 0f;
+        pokeFollow.returnToInitialPosition = false;
+
+        Vector3 position = btnTransform.localPosition;
+        Vector3 targetPosition = new Vector3(position.x, 0f, position.z);
+
+        btnTransform.localPosition = targetPosition;
+
+        interactable.interactionLayers = 0;
     }
 
     public void OnClick()

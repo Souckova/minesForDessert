@@ -659,7 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce9e035324fdbc488f1080afab500b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CellView
-  explosionEffect: {fileID: 0}
+  explosionEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   flagTrigger: {fileID: 6723258221589439358}
   text: {fileID: 2725528172841275862}
 --- !u!4 &6742277822225128473 stripped

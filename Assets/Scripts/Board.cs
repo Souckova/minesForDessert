@@ -1,10 +1,14 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Board : MonoBehaviour
 {
     public int width = 9;
     public int height = 9;
     public int minesCount = 9;
+
+    private int safeCells;
+    private int revealedCells = 0;
 
     private Cell[,] grid;
 
@@ -14,6 +18,9 @@ public class Board : MonoBehaviour
     public float flagMargin = 1f;
     public float flagOffset = -10f;
 
+    public UnityEvent onMineExplosion;
+    public UnityEvent onWin;
+
     bool firstClick = true;
     Cell firstClickCell;
 
@@ -21,6 +28,15 @@ public class Board : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //ošetření vložených atributů
+        width = Mathf.Max(2, width);
+        height = Mathf.Max(2, height);
+        minesCount = Mathf.Clamp(minesCount, 0, width * height - 1);
+        cellMargin = Mathf.Max(0.01f, cellMargin);
+        flagMargin = Mathf.Max(0.01f, flagMargin);
+        //inicializace atributů
+        safeCells = width * height - minesCount;
+
         CreateGrid();
         SpawnCells();
         SpawnFlags();
@@ -96,6 +112,13 @@ public class Board : MonoBehaviour
         if(cell.hasMine)
         {
             cell.Explode();
+            onMineExplosion?.Invoke();
+        } else {
+            revealedCells++;
+            if(revealedCells >= safeCells)
+            {
+                onWin?.Invoke();
+            }
         }
 
         if(cell.adjacentMines == 0)

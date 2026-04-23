@@ -119,6 +119,7 @@ Thumbs.db
 *.rdc
 
 .vscode
+.vsconfig
 
 Assets/Resources/ImmersiveDebuggerSettings.asset
 Assets/Resources/ImmersiveDebuggerSettings.asset.meta

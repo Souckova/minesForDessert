@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 540464040329363850}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.9659259, z: 0.258819, w: 0}
-  m_LocalPosition: {x: -0.668, y: 5.32, z: 0.209}
+  m_LocalRotation: {x: 0, y: 0.97629607, z: 0.21643952, w: 0}
+  m_LocalPosition: {x: -0.612, y: 4.64, z: 0.157}
   m_LocalScale: {x: 6, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4093703467436401431}
-  m_LocalEulerAnglesHint: {x: -30, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -25, y: 180, z: 0}
 --- !u!1 &2431680439434886511
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
-  m_SelectMode: 1
+  m_SelectMode: 0
   m_FocusMode: 1
   m_CustomReticle: {fileID: 0}
   m_AllowGazeInteraction: 0
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_AttachTransform: {fileID: 2044691698176834178}
-  m_SecondaryAttachTransform: {fileID: 8128817307878078964}
+  m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
@@ -271,37 +271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467ee7eacd951874eaeba0d9435a1b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VRFlag
---- !u!1 &3344832989783693239
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8128817307878078964}
-  m_Layer: 0
-  m_Name: Attach 2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8128817307878078964
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3344832989783693239}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.18301266, y: 0.6830127, z: 0.18301266, w: -0.6830127}
-  m_LocalPosition: {x: -0.655, y: 3.414, z: 0.208}
-  m_LocalScale: {x: 6, y: 5, z: 5}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4093703467436401431}
-  m_LocalEulerAnglesHint: {x: -30, y: 270, z: 0}
 --- !u!1 &7468818225901907120
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 7468818225901907120}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.45799994, y: 0.32788926, z: 0.14200002}
+  m_LocalPosition: {x: -0.4605, y: 0.32788926, z: 0.14200002}
   m_LocalScale: {x: 19.91, y: 19.91, z: 19.91}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -593,7 +562,7 @@ SkinnedMeshRenderer:
   m_RootBone: {fileID: 0}
   m_AABB:
     m_Center: {x: -0.014000659, y: 0.00046772463, z: 0.042684287}
-    m_Extent: {x: 0.013502431, y: 0.013543244, z: 0.009689147}
+    m_Extent: {x: 0.0131, y: 0.001, z: 0.008}
   m_DirtyAABB: 0
 --- !u!183 &7444951449971492347
 Cloth:
@@ -602,7 +571,7 @@ Cloth:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7468818225901907120}
-  m_Enabled: 0
+  m_Enabled: 1
   m_StretchingStiffness: 1
   m_BendingStiffness: 0.51
   m_UseTethers: 1
@@ -5319,6 +5288,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 0b4b1351b342b924aa285ec4748a8b97, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0b4b1351b342b924aa285ec4748a8b97, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 65ba5b43ea96bce4596d36e0cea7ee97, type: 2}
@@ -5336,9 +5309,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0b4b1351b342b924aa285ec4748a8b97, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2044691698176834178}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0b4b1351b342b924aa285ec4748a8b97, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8128817307878078964}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b4b1351b342b924aa285ec4748a8b97, type: 3}
       insertIndex: -1
@@ -5362,13 +5332,13 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.07920463
+  m_Radius: 0.04
   m_Height: 8.140219
   m_Direction: 1
   m_Center: {x: -0.6623657, y: 4.1298904, z: 0.20983559}

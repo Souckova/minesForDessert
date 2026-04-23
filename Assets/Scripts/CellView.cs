@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -16,6 +17,18 @@ public class CellView : MonoBehaviour
     public XRSimpleInteractable interactable;
     public Transform btnTransform;
 
+    public Color zeroColor;
+    public Color oneColor;
+    public Color twoColor;
+    public Color threeColor;
+    public Color fourColor;
+    public Color fiveColor;
+    public Color sixColor;
+    public Color sevenColor;
+    public Color eightColor;
+
+    private Dictionary<string, Color> numberColors;
+
     //Ten text je jenom nějaký provizorní zobrazení hodnot přímo ve hře, pak to samozřejmě bude vypadat jinak
     public Text text;
 
@@ -28,6 +41,19 @@ public class CellView : MonoBehaviour
         cellData.OnExplode += ShowExplosion;
         cellData.OnFlag += UpdateVisual;
         cellData.OnUnFlag += UpdateVisual;
+
+        numberColors = new Dictionary<string, Color>
+        {
+            { "0", zeroColor },
+            { "1", oneColor },
+            { "2", twoColor },
+            { "3", threeColor },
+            { "4", fourColor },
+            { "5", fiveColor },
+            { "6", sixColor },
+            { "7", sevenColor },
+            { "8", eightColor },
+        };
         UpdateVisual();
     }
 
@@ -40,7 +66,19 @@ public class CellView : MonoBehaviour
     //pak až budem chtít zobrazit ve hře změny
     void UpdateVisual()
     {
-        text.text = cellData.ToStringForGame();
+        string cellValue = cellData.ToStringForGame();
+
+        text.text = cellValue;
+        if(numberColors.TryGetValue(cellValue, out Color targetColor))
+        {
+            text.text = cellValue;
+            text.color = targetColor;
+        }
+        else
+        {
+            text.text = "";
+            text.color = zeroColor;
+        }
     }
 
     void DisableButton()

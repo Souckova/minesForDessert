@@ -391,11 +391,11 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 15
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 5
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -703,6 +703,15 @@ MonoBehaviour:
   pokeFollow: {fileID: 3248015295909041816}
   interactable: {fileID: 7141153464293207388}
   btnTransform: {fileID: 3534563208867672752}
+  zeroColor: {r: 1, g: 1, b: 1, a: 1}
+  oneColor: {r: 0, g: 0, b: 0.9921569, a: 1}
+  twoColor: {r: 0.003921569, g: 0.49411768, b: 0, a: 1}
+  threeColor: {r: 0.9960785, g: 0, b: 0, a: 1}
+  fourColor: {r: 0.003921569, g: 0.003921569, b: 0.5019608, a: 1}
+  fiveColor: {r: 0.5058824, g: 0.007843138, b: 0.003921569, a: 1}
+  sixColor: {r: 0, g: 0.5019608, b: 0.5019608, a: 1}
+  sevenColor: {r: 0, g: 0, b: 0, a: 1}
+  eightColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   text: {fileID: 2725528172841275862}
 --- !u!4 &6742277822225128473 stripped
 Transform:
